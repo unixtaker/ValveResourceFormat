@@ -61,6 +61,11 @@
     <Compile Include="gtk-gui\GTKValveViewer.TextureDisplayWidget.cs" />
     <Compile Include="NotebookTabLabel.cs" />
     <Compile Include="gtk-gui\GTKValveViewer.NotebookTabLabel.cs" />
+    <Compile Include="ValveLoaders\ValvePackageFileLoader.cs" />
+    <Compile Include="ValveLoaders\ValveCompiledSoundLoader.cs" />
+    <Compile Include="ValveLoaders\ValveCompiledXmlLoader.cs" />
+    <Compile Include="ValveLoaders\ValveCompiledMaterialLoader.cs" />
+    <Compile Include="ValveLoaders\ValveCompiledMeshLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ValveResourceFormat\ValveResourceFormat.csproj">

@@ -70,6 +70,7 @@ public partial class MainWindow
 		this.notebook.CanFocus = true;
 		this.notebook.Name = "notebook";
 		this.notebook.CurrentPage = -1;
+		this.notebook.TabPos = ((global::Gtk.PositionType)(0));
 		this.vbox1.Add(this.notebook);
 		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.notebook]));
 		w3.Position = 1;

@@ -16,10 +16,15 @@ namespace GTKValveViewer
 			return f;							 
 		}
 
-		public override Widget ProcessFile(String fileName) {
-			
-			var resource = new Resource();
-			resource.Read(fileName);
+		public override bool HandlesValveResource(ResourceType rtype)
+		{
+			return rtype == ResourceType.Texture;
+		}
+
+
+
+		public override Widget ProcessFile(Resource resource) {
+					
 			var tdw = new TextureDisplayWidget();
 			var tex = (Texture)resource.Blocks[BlockType.DATA];
 			tdw.SetImageTexture(tex.GenerateBitmap());

@@ -4,7 +4,19 @@ namespace GTKValveViewer
 {
 	public partial class TextureDisplayWidget
 	{
+		private global::Gtk.UIManager UIManager;
+
+		private global::Gtk.Action ExportAction;
+
+		private global::Gtk.Action SavePNGAction;
+
+		private global::Gtk.Action SaveTGAAction;
+
 		private global::Gtk.Notebook notebook1;
+
+		private global::Gtk.VBox vbox1;
+
+		private global::Gtk.MenuBar menubar1;
 
 		private global::Gtk.Image image1;
 
@@ -26,7 +38,19 @@ namespace GTKValveViewer
 		{
 			global::Stetic.Gui.Initialize(this);
 			// Widget GTKValveViewer.TextureDisplayWidget
-			global::Stetic.BinContainer.Attach(this);
+			Stetic.BinContainer w1 = global::Stetic.BinContainer.Attach(this);
+			this.UIManager = new global::Gtk.UIManager();
+			global::Gtk.ActionGroup w2 = new global::Gtk.ActionGroup("Default");
+			this.ExportAction = new global::Gtk.Action("ExportAction", global::Mono.Unix.Catalog.GetString("Export"), null, null);
+			this.ExportAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Export");
+			w2.Add(this.ExportAction, null);
+			this.SavePNGAction = new global::Gtk.Action("SavePNGAction", global::Mono.Unix.Catalog.GetString("Save PNG"), null, null);
+			this.SavePNGAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Save PNG");
+			w2.Add(this.SavePNGAction, null);
+			this.SaveTGAAction = new global::Gtk.Action("SaveTGAAction", global::Mono.Unix.Catalog.GetString("Save TGA"), null, null);
+			this.SaveTGAAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Save TGA");
+			w2.Add(this.SaveTGAAction, null);
+			this.UIManager.InsertActionGroup(w2, 0);
 			this.Name = "GTKValveViewer.TextureDisplayWidget";
 			// Container child GTKValveViewer.TextureDisplayWidget.Gtk.Container+ContainerChild
 			this.notebook1 = new global::Gtk.Notebook();
@@ -34,14 +58,32 @@ namespace GTKValveViewer
 			this.notebook1.Name = "notebook1";
 			this.notebook1.CurrentPage = 0;
 			// Container child notebook1.Gtk.Notebook+NotebookChild
+			this.vbox1 = new global::Gtk.VBox();
+			this.vbox1.Name = "vbox1";
+			this.vbox1.Spacing = 6;
+			// Container child vbox1.Gtk.Box+BoxChild
+			this.UIManager.AddUiFromString("<ui><menubar name='menubar1'><menu name='ExportAction' action='ExportAction'><menuitem name='SavePNGAction' action='SavePNGAction'/><menuitem name='SaveTGAAction' action='SaveTGAAction'/></menu></menubar></ui>");
+			this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget("/menubar1")));
+			this.menubar1.Name = "menubar1";
+			this.vbox1.Add(this.menubar1);
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.menubar1]));
+			w3.Position = 0;
+			w3.Expand = false;
+			w3.Fill = false;
+			// Container child vbox1.Gtk.Box+BoxChild
 			this.image1 = new global::Gtk.Image();
 			this.image1.Name = "image1";
-			this.notebook1.Add(this.image1);
+			this.vbox1.Add(this.image1);
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.image1]));
+			w4.Position = 1;
+			w4.Expand = false;
+			w4.Fill = false;
+			this.notebook1.Add(this.vbox1);
 			// Notebook tab
 			this.page1 = new global::Gtk.Label();
 			this.page1.Name = "page1";
 			this.page1.LabelProp = global::Mono.Unix.Catalog.GetString("Texture");
-			this.notebook1.SetTabLabel(this.image1, this.page1);
+			this.notebook1.SetTabLabel(this.vbox1, this.page1);
 			this.page1.ShowAll();
 			// Container child notebook1.Gtk.Notebook+NotebookChild
 			this.GtkScrolledWindow1 = new global::Gtk.ScrolledWindow();
@@ -53,8 +95,8 @@ namespace GTKValveViewer
 			this.textview_redi.Name = "textview_redi";
 			this.GtkScrolledWindow1.Add(this.textview_redi);
 			this.notebook1.Add(this.GtkScrolledWindow1);
-			global::Gtk.Notebook.NotebookChild w3 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.GtkScrolledWindow1]));
-			w3.Position = 1;
+			global::Gtk.Notebook.NotebookChild w7 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.GtkScrolledWindow1]));
+			w7.Position = 1;
 			// Notebook tab
 			this.label2 = new global::Gtk.Label();
 			this.label2.Name = "label2";
@@ -71,8 +113,8 @@ namespace GTKValveViewer
 			this.textview_data.Name = "textview_data";
 			this.GtkScrolledWindow.Add(this.textview_data);
 			this.notebook1.Add(this.GtkScrolledWindow);
-			global::Gtk.Notebook.NotebookChild w5 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.GtkScrolledWindow]));
-			w5.Position = 2;
+			global::Gtk.Notebook.NotebookChild w9 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.GtkScrolledWindow]));
+			w9.Position = 2;
 			// Notebook tab
 			this.label3 = new global::Gtk.Label();
 			this.label3.Name = "label3";
@@ -84,7 +126,10 @@ namespace GTKValveViewer
 			{
 				this.Child.ShowAll();
 			}
+			w1.SetUiManager(UIManager);
 			this.Hide();
+			this.SavePNGAction.Activated += new global::System.EventHandler(this.OnSavePNG);
+			this.SaveTGAAction.Activated += new global::System.EventHandler(this.OnSaveTGA);
 		}
 	}
 }

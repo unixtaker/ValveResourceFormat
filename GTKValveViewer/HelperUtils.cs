@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading;
 using Gtk;
+using ValveResourceFormat;
 
 namespace GTKValveViewer
 {
@@ -50,7 +51,7 @@ namespace GTKValveViewer
 		public static IEnumerable<FileFilter> gatherFileFilters()
 		{
 			// use reflection to get all classes that 
-			foreach (var ltype in HelperUtils.GetSubclassesOf(typeof(GTKValveViewer.AbstractValveLoaderClass), true))
+			foreach (var ltype in HelperUtils.GetSubclassesOf(typeof(AbstractValveLoaderClass), true))
 			{
 				var f1 = (AbstractValveLoaderClass)Activator.CreateInstance(ltype);
 				yield return f1.getFileFilter();
@@ -61,12 +62,12 @@ namespace GTKValveViewer
 			yield return filterAll;
 		}
 
-		public static AbstractValveLoaderClass GetFileLoaderClass(String fileName, FileFilter filter)
+		public static AbstractValveLoaderClass GetFileLoaderClass(ResourceType type)
 		{
-			foreach (var ltype in HelperUtils.GetSubclassesOf(typeof(GTKValveViewer.AbstractValveLoaderClass), true))
+			foreach (var ltype in HelperUtils.GetSubclassesOf(typeof(AbstractValveLoaderClass), true))
 			{
 				var f1 = (AbstractValveLoaderClass)Activator.CreateInstance(ltype);
-				if (filter.Name == f1.getFileFilter().Name)
+				if (f1.HandlesValveResource(type))
 				{
 					return f1;
 				}

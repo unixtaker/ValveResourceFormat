@@ -70,21 +70,27 @@ public partial class MainWindow : Gtk.Window
 		string[] filePath = fileName.Split('/');
 
 		var l = new NotebookTabLabel(filePath.Last());
-
-		var loader = HelperUtils.GetFileLoaderClass(fileName, filter);
-		if ( loader == null ) {
-
-			return;
+		try
+		{
+			var resource = new ValveResourceFormat.Resource();
+			resource.Read(fileName);
+			var processor = HelperUtils.GetFileLoaderClass(resource.ResourceType);
+			if (processor == null) return;
+			var widget = processor.ProcessFile(resource);
+			widget.Show();
+			l.Show();
+			notebook.AppendPage(widget, l);
+			l.CloseClicked += delegate (object obj, EventArgs eventArgs)
+			{
+				notebook.RemovePage(notebook.PageNum(widget));
+			};
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e.Message);
 		}
 
-		var widget = loader.ProcessFile(fileName);
-		widget.Show();
-		l.Show();
-		notebook.AppendPage(widget, l);
-		l.CloseClicked += delegate (object obj, EventArgs eventArgs)
-		{
-			notebook.RemovePage(notebook.PageNum(widget));
-		};
+
 	}
 
 }

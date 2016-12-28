@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Drawing;
+using Gtk;
 
 namespace GTKValveViewer
 {
@@ -28,6 +29,41 @@ namespace GTKValveViewer
 				image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
 				ms.Seek(0, SeekOrigin.Begin);
 				this.image1.Pixbuf = new Gdk.Pixbuf(ms);
+			}
+		}
+
+		protected void OnSavePNG(object sender, EventArgs e)
+		{
+			using (var chooser = new FileChooserDialog("Export file as PNG",
+			                                           (Window)this.Toplevel, FileChooserAction.Save,
+			                                           "Cancel", ResponseType.Cancel,
+			                                           "Save", ResponseType.Accept))
+			{
+				var response = chooser.Run();
+				if (response == (int)ResponseType.Accept)
+				{
+					this.image1.Pixbuf.Save(chooser.Filename, "png");
+				}
+
+				chooser.Destroy();
+			}
+
+		}
+
+
+		protected void OnSaveTGA(object sender, EventArgs e)
+		{
+			using (var chooser = new FileChooserDialog("Export file as TGA",
+			                                           (Window)this.Toplevel, FileChooserAction.Save,
+													   "Cancel", ResponseType.Cancel,
+													   "Save", ResponseType.Accept))
+			{
+				var response = chooser.Run();
+				if (response == (int)ResponseType.Accept)
+				{
+					this.image1.Pixbuf.Save(chooser.Filename, "tga");
+				}
+				chooser.Destroy();
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 ﻿using System;
 using Gtk;
+using ValveResourceFormat;
 
 namespace GTKValveViewer
 {
@@ -9,10 +10,13 @@ namespace GTKValveViewer
 		{
 		}
 
-		public virtual Widget ProcessFile(String fileName) {
-			Label l = new Label(fileName);
+		public virtual Widget ProcessFile(Resource resource)
+		{
+			var l = new Label(resource.ResourceType.ToString());
 			return l;
 		}
+
+		public abstract bool HandlesValveResource(ResourceType rtype);
 
 		public abstract FileFilter getFileFilter();
 
@@ -20,59 +24,15 @@ namespace GTKValveViewer
 
 
 	
-	public class ValvePackageFileLoader : AbstractValveLoaderClass
-	{
-		public override FileFilter getFileFilter()
-		{
-			var f = new FileFilter();
-			f.Name = "Valve Package File (*.vpk)";
-			f.AddPattern("*.vpk");
-			return f;
-		}
-	}
+	
 
-	public class ValveCompiledXmlLoader : AbstractValveLoaderClass { 
-		public override FileFilter getFileFilter()
-		{
-			var f = new FileFilter();
-			f.Name = "Valve Compiled XML (*.vxml_c)";
-			f.AddPattern("*.vxml_c");
-			return f;
-		}
-	}
+	
 
-	public class ValveCompiledSoundLoader : AbstractValveLoaderClass
-	{
-		public override FileFilter getFileFilter()
-		{
-			var f = new FileFilter();
-			f.Name = "Valve Compiled Sound (*.vsnd_c)";
-			f.AddPattern("*.vsnd_c");
-			return f;
-		}
-	}
+	
 
-	public class ValveCompiledMeshLoader : AbstractValveLoaderClass
-	{
-		public override FileFilter getFileFilter()
-		{
-			var f = new FileFilter();
-			f.Name = "Valve Compiled Mesh (*.vmesh_c)";
-			f.AddPattern("*.vmesh_c");
-			return f;
-		}
-	}
+	
 
-	public class ValveCompiledMaterialLoader : AbstractValveLoaderClass
-	{
-		public override FileFilter getFileFilter()
-		{
-			var f = new FileFilter();
-			f.Name = "Valve Compiled Material (*.vmat_c)";
-			f.AddPattern("*.vmat_c");
-			return f;
-		}
-	}
+	
 
 	//vsndstck_c
 	//vsndevts_c
