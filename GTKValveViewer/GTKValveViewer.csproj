@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="Mono.Posix" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -53,14 +54,22 @@
     <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AbstractValveLoaderClass.cs" />
     <Compile Include="HelperUtils.cs" />
+    <Compile Include="ValveLoaders\AbstractValveLoaderClass.cs" />
+    <Compile Include="ValveLoaders\ValveCompiledTextureLoader.cs" />
+    <Compile Include="TextureDisplayWidget.cs" />
+    <Compile Include="gtk-gui\GTKValveViewer.TextureDisplayWidget.cs" />
+    <Compile Include="NotebookTabLabel.cs" />
+    <Compile Include="gtk-gui\GTKValveViewer.NotebookTabLabel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ValveResourceFormat\ValveResourceFormat.csproj">
       <Project>{E685E563-5F49-4D8D-8342-A7354229E54F}</Project>
       <Name>ValveResourceFormat</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ValveLoaders\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

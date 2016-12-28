@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Gtk;
+using GTKValveViewer;
 
 public partial class MainWindow : Gtk.Window
 {
@@ -28,7 +29,7 @@ public partial class MainWindow : Gtk.Window
 											"Cancel", ResponseType.Cancel,
 												   "Open", ResponseType.Accept))
 		{
-			foreach (var filter in GTKValveViewer.HelperUtils.gatherFileFilters())
+			foreach (var filter in HelperUtils.gatherFileFilters())
 			{
 				chooser.AddFilter(filter);
 			}
@@ -60,15 +61,25 @@ public partial class MainWindow : Gtk.Window
 	}
 
 	protected void AddFile(String fileName, FileFilter filter)
-	{
-		Label l = new Label();
+	{		
 		string[] filePath = fileName.Split('/');
-		l.Text = filePath.Last();
 
-		var loader = GTKValveViewer.HelperUtils.GetFileLoaderClass(fileName, filter);
+		var l = new NotebookTabLabel(filePath.Last());
+
+		var loader = HelperUtils.GetFileLoaderClass(fileName, filter);
+		if ( loader == null ) {
+
+			return;
+		}
+
 		var widget = loader.ProcessFile(fileName);
 		widget.Show();
 		l.Show();
 		notebook.AppendPage(widget, l);
+		l.CloseClicked += delegate (object obj, EventArgs eventArgs)
+		{
+			notebook.RemovePage(notebook.PageNum(widget));
+		};
 	}
+
 }

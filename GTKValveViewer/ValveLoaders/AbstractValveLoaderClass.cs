@@ -9,21 +9,17 @@ namespace GTKValveViewer
 		{
 		}
 
+		public virtual Widget ProcessFile(String fileName) {
+			Label l = new Label(fileName);
+			return l;
+		}
+
 		public abstract FileFilter getFileFilter();
 
 	}
 
-	public class ValveCompiledTextureLoader : AbstractValveLoaderClass
-	{
-		public override FileFilter getFileFilter()
-		{
-			var f = new FileFilter();
-			f.Name = "Valve Compiled Textures (*.vtex_c)";
-			f.AddPattern("*.vtex_c");
-			return f;							 
-		}
-	}
 
+	
 	public class ValvePackageFileLoader : AbstractValveLoaderClass
 	{
 		public override FileFilter getFileFilter()

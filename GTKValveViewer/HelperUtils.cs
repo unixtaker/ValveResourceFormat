@@ -61,16 +61,17 @@ namespace GTKValveViewer
 			yield return filterAll;
 		}
 
-		public AbstractValveLoaderClass GetFileLoaderClass(String fileName, FileFilter filter)
+		public static AbstractValveLoaderClass GetFileLoaderClass(String fileName, FileFilter filter)
 		{
 			foreach (var ltype in HelperUtils.GetSubclassesOf(typeof(GTKValveViewer.AbstractValveLoaderClass), true))
 			{
 				var f1 = (AbstractValveLoaderClass)Activator.CreateInstance(ltype);
-				if (filter == f1.getFileFilter())
+				if (filter.Name == f1.getFileFilter().Name)
 				{
 					return f1;
 				}
 			}
+			return null;
 		}
 	}
 }
