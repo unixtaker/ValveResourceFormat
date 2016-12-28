@@ -24,11 +24,13 @@ public partial class MainWindow : Gtk.Window
 	protected void OnOpen(object sender, EventArgs e)
 	{
 
-		using (var chooser = new FileChooserDialog("Please select a valve resource file ...",
+		using (var chooser = new FileChooserDialog("Please select valve resource file(s) ...",
 											this, FileChooserAction.Open,
 											"Cancel", ResponseType.Cancel,
-												   "Open", ResponseType.Accept))
+											"Open", ResponseType.Accept))
 		{
+			chooser.SelectMultiple = true;
+			        
 			foreach (var filter in HelperUtils.gatherFileFilters())
 			{
 				chooser.AddFilter(filter);
@@ -38,7 +40,10 @@ public partial class MainWindow : Gtk.Window
 			if (response == (int)ResponseType.Accept)
 			{
 				Console.WriteLine("{0}: picked", chooser.Filename);
-				AddFile(chooser.Filename, chooser.Filter);
+				foreach (var filename in chooser.Filenames)
+				{
+					AddFile(filename, chooser.Filter);
+				}
 			}
 			else if (response == (int)ResponseType.Cancel)
 			{

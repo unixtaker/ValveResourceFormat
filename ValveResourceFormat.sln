@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{39C336BB-2ADD-4AB5-A3F0-E4E5E1ACA6A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTKValveViewer", "GTKValveViewer\GTKValveViewer.csproj", "{27B633BA-E0D3-4BFF-B78A-3CA313749EAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTKTests", "GTKTests\GTKTests.csproj", "{38B3FAD1-9DDD-4CB0-A310-0028CB46DECD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{39C336BB-2ADD-4AB5-A3F0-E4E5E1ACA6A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39C336BB-2ADD-4AB5-A3F0-E4E5E1ACA6A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39C336BB-2ADD-4AB5-A3F0-E4E5E1ACA6A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27B633BA-E0D3-4BFF-B78A-3CA313749EAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27B633BA-E0D3-4BFF-B78A-3CA313749EAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27B633BA-E0D3-4BFF-B78A-3CA313749EAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27B633BA-E0D3-4BFF-B78A-3CA313749EAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38B3FAD1-9DDD-4CB0-A310-0028CB46DECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38B3FAD1-9DDD-4CB0-A310-0028CB46DECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38B3FAD1-9DDD-4CB0-A310-0028CB46DECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38B3FAD1-9DDD-4CB0-A310-0028CB46DECD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
